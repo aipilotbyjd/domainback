@@ -213,19 +213,17 @@ const BusinessNameGenerator = () => {
                 },
               }}
             >
-              <Card style={styles.card}>
-                <Card.Content>
-                  {business.domains.map((domain, i) => (
-                    <List.Item
-                      key={i}
-                      title={domain}
-                      left={() => (
-                        <AntDesign name="plus" size={24} color="black" />
-                      )}
-                      style={styles.listItem}
-                    />
-                  ))}
-                </Card.Content>
+              <Card style={styles.card2}>
+                {business.domains.map((domain, i) => (
+                  <List.Item
+                    key={i}
+                    title={domain}
+                    left={() => (
+                      <AntDesign name="plus" size={24} color="black" />
+                    )}
+                    style={styles.listItem}
+                  />
+                ))}
               </Card>
             </List.Accordion>
           ))}
@@ -311,8 +309,8 @@ const styles = StyleSheet.create({
   },
   accordion: {
     marginBottom: 16,
-    backgroundColor: "#fff",
-    borderRadius: 5,
+    backgroundColor: "#e6ebf5",
+    borderRadius: 4,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -322,8 +320,29 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     marginTop: 1,
+    borderColor: "#6200EE",
+    borderWidth: 2,
   },
   listItem: {
+    backgroundColor: "#e6ebf5",
+    borderRadius: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+    marginTop: 1,
+    marginBottom: 16,
+    borderColor: "#6200EE",
+    borderWidth: 2,
+    width: "100%",
+    marginLeft: 0,
+    paddingLeft: 0,
+  },
+  card2: {
     backgroundColor: "#fff",
     borderRadius: 5,
     shadowColor: "#000",
@@ -335,6 +354,10 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     marginTop: 1,
+    marginBottom: 16,
+    width: "100%",
+    marginLeft: 0,
+    paddingLeft: 0,
   },
 });
 
