@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { View, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 import {
-  TextInput,
-  Button,
-  Card,
-  Title,
-  List,
-  IconButton,
-} from "react-native-paper";
-import { AntDesign } from "@expo/vector-icons";
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  ToastAndroid,
+  Alert,
+} from "react-native";
+import { TextInput, Button, Card, Title, List } from "react-native-paper";
+import { AntDesign, Octicons } from "@expo/vector-icons";
 
 const BusinessNameGenerator = () => {
   const [keyword, setKeyword] = useState("");
+  const [domainavailable, setDomainavailable] = useState(false);
   const [businessNames, setBusinessNames] = useState([
     {
       name: "Acme Industries",
@@ -179,6 +180,12 @@ const BusinessNameGenerator = () => {
     setBusinessNames(newBusinessNames);
   };
 
+  const SaveDomain = () => {
+    //Save domain to database
+    console.log("Save domain to database");
+    Alert.alert("Domain saved to database");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topContainer}>
@@ -218,10 +225,15 @@ const BusinessNameGenerator = () => {
                   <List.Item
                     key={i}
                     title={domain}
-                    left={() => (
-                      <AntDesign name="plus" size={24} color="black" />
-                    )}
                     style={styles.listItem}
+                    right={() => (
+                      <AntDesign
+                        name="star"
+                        size={24}
+                        color="black"
+                        onPress={SaveDomain()}
+                      />
+                    )}
                   />
                 ))}
               </Card>
@@ -358,6 +370,42 @@ const styles = StyleSheet.create({
     width: "100%",
     marginLeft: 0,
     paddingLeft: 0,
+  },
+  button2: {
+    backgroundColor: "#6200EE",
+    borderRadius: 5,
+    alignSelf: "flex-end",
+    paddingVertical: 6,
+    marginTop: 12,
+    marginBottom: 16,
+  },
+  button3: {
+    backgroundColor: "#6200EE",
+    borderRadius: 5,
+    alignSelf: "flex-end",
+    paddingVertical: 6,
+    marginTop: 12,
+    marginBottom: 16,
+  },
+  available: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: "#4CAF50",
+  },
+  unavailable: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: "#F44336",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    marginLeft: 10,
+    marginRight: 10,
   },
 });
 
