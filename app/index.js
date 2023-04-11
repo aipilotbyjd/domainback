@@ -92,9 +92,7 @@ const BusinessNameGenerator = () => {
               left={() => <AntDesign name="plus" size={24} color="black" />}
               theme={{
                 colors: {
-                  surface: "#F6F6F6",
-                  backdrop: "#F6F6F6",
-                  accent: "#6200EE",
+                  background: "#F6F6F6",
                 },
               }}
             >
