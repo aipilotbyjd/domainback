@@ -1,13 +1,27 @@
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Card } from "react-native-paper";
 
-export default function Page() {
+export default function BussinessNameGenrator() {
   return (
-    <View style={styles.container}>
-      <View style={styles.main}>
-        <Text style={styles.title}>Hello World</Text>
-        <Text style={styles.subtitle}>This is the first page of your app.</Text>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View style={styles.main}>
+          <Card style={styles.card}>
+            <Card.Content>
+              <Text style={styles.title}>Bussiness Name Genrator</Text>
+              <Text style={styles.subtitle}>by @mochiy</Text>
+            </Card.Content>
+          </Card>
+          <Card style={styles.card}>
+            <Card.Content>
+              <Text style={styles.title}>Bussiness Name Genrator</Text>
+              <Text style={styles.subtitle}>by @mochiy</Text>
+            </Card.Content>
+          </Card>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
