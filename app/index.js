@@ -83,32 +83,29 @@ const BusinessNameGenerator = () => {
       <View style={styles.bottomContainer}>
         <ScrollView>
           {businessNames.map((business, index) => (
-            <Card key={index} style={styles.card}>
-              <Card.Content>
-                <Title>{business.name}</Title>
-                <List.Accordion
-                  title="Domain availability"
-                  expanded={business.expanded}
-                  onPress={() => handleAccordionToggle(index)}
-                >
-                  {business.domains.map((domain, i) => (
-                    <List.Item
-                      key={i}
-                      title={domain}
-                      left={() => (
-                        <AntDesign name="checkcircle" size={24} color="green" />
-                      )}
-                    />
-                  ))}
-                </List.Accordion>
-              </Card.Content>
-              <Card.Actions style={styles.cardActions}>
-                <IconButton
-                  icon={business.expanded ? "minus" : "plus"}
-                  onPress={() => handleAccordionToggle(index)}
+            <List.Accordion
+              title={business.name}
+              expanded={business.expanded}
+              onPress={() => handleAccordionToggle(index)}
+              style={styles.accordion}
+              key={index}
+              left={() => <AntDesign name="plus" size={24} color="black" />}
+              theme={{
+                colors: {
+                  surface: "#F6F6F6",
+                  backdrop: "#F6F6F6",
+                  accent: "#6200EE",
+                },
+              }}
+            >
+              {business.domains.map((domain, i) => (
+                <List.Item
+                  key={i}
+                  title={domain}
+                  left={() => <AntDesign name="plus" size={24} color="black" />}
                 />
-              </Card.Actions>
-            </Card>
+              ))}
+            </List.Accordion>
           ))}
         </ScrollView>
       </View>
@@ -161,6 +158,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 18,
+    fontFamily: "Bangers_400Regular",
+    fontWeight: "medium",
   },
   input: {
     flex: 1,
@@ -187,6 +186,20 @@ const styles = StyleSheet.create({
   },
   domainContainer: {
     maxHeight: 150,
+  },
+  accordion: {
+    marginBottom: 16,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+    marginTop: 1,
   },
 });
 
