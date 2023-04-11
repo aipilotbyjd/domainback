@@ -46,6 +46,123 @@ const BusinessNameGenerator = () => {
       domains: ["creativeminds.com", "creativeminds.net", "creativeminds.org"],
       expanded: false,
     },
+    {
+      name: "Dynamic Solutions",
+      domains: [
+        "dynamicsolutions.com",
+        "dynamicsolutions.net",
+        "dynamicsolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Eagle Eye Solutions",
+      domains: [
+        "eagleeyesolutions.com",
+        "eagleeyesolutions.net",
+        "eagleeyesolutions.org",
+      ],
+      expanded: false,
+    },
   ]);
 
   const handleKeywordChange = (text) => {
@@ -96,13 +213,20 @@ const BusinessNameGenerator = () => {
                 },
               }}
             >
-              {business.domains.map((domain, i) => (
-                <List.Item
-                  key={i}
-                  title={domain}
-                  left={() => <AntDesign name="plus" size={24} color="black" />}
-                />
-              ))}
+              <Card style={styles.card}>
+                <Card.Content>
+                  {business.domains.map((domain, i) => (
+                    <List.Item
+                      key={i}
+                      title={domain}
+                      left={() => (
+                        <AntDesign name="plus" size={24} color="black" />
+                      )}
+                      style={styles.listItem}
+                    />
+                  ))}
+                </Card.Content>
+              </Card>
             </List.Accordion>
           ))}
         </ScrollView>
@@ -187,6 +311,19 @@ const styles = StyleSheet.create({
   },
   accordion: {
     marginBottom: 16,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+    marginTop: 1,
+  },
+  listItem: {
     backgroundColor: "#fff",
     borderRadius: 5,
     shadowColor: "#000",
