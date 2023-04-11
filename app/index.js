@@ -1,38 +1,116 @@
-//make bussness name genrator in react native
-import React from "react";
-import { SafeAreaView } from "react-native";
-import { StyleSheet, Text, View } from "react-native";
-import { Card, TextInput } from "react-native-paper";
+import React, { useState } from "react";
+import { View, StyleSheet, SafeAreaView } from "react-native";
+import {
+  TextInput,
+  Button,
+  Card,
+  Title,
+  List,
+  IconButton,
+} from "react-native-paper";
+import { AntDesign } from "@expo/vector-icons";
 
-const BussnessNameGenrator = () => {
+const BusinessNameGenerator = () => {
+  const [keyword, setKeyword] = useState("");
+  const [businessNames, setBusinessNames] = useState([
+    {
+      name: "Acme Industries",
+      domains: [
+        "acmeindustries.com",
+        "acmeindustries.net",
+        "acmeindustries.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Apex Solutions",
+      domains: ["apexsolutions.com", "apexsolutions.net", "apexsolutions.org"],
+      expanded: false,
+    },
+    {
+      name: "Bright Idea Inc.",
+      domains: ["brightidea.com", "brightidea.net", "brightidea.org"],
+      expanded: false,
+    },
+    {
+      name: "Blue Sky Innovations",
+      domains: [
+        "blueskyinnovations.com",
+        "blueskyinnovations.net",
+        "blueskyinnovations.org",
+      ],
+      expanded: false,
+    },
+    {
+      name: "Creative Minds LLC",
+      domains: ["creativeminds.com", "creativeminds.net", "creativeminds.org"],
+      expanded: false,
+    },
+  ]);
+
+  const handleKeywordChange = (text) => {
+    setKeyword(text);
+  };
+
+  const handleSearch = () => {
+    // TODO: Implement search functionality
+  };
+
+  const handleAccordionToggle = (index) => {
+    const newBusinessNames = [...businessNames];
+    newBusinessNames[index].expanded = !newBusinessNames[index].expanded;
+    setBusinessNames(newBusinessNames);
+  };
+
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <Card>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          label="Enter a keyword"
+          value={keyword}
+          onChangeText={handleKeywordChange}
+          style={styles.input}
+        />
+        <Button mode="contained" onPress={handleSearch}>
+          Search
+        </Button>
+      </View>
+      <View style={styles.cardContainer}>
+        {businessNames.map((business, index) => (
+          <Card key={index} style={styles.card}>
             <Card.Content>
-              <TextInput label="Enter your name" />
+              <Title>{business.name}</Title>
+              <List.Accordion
+                title="Domain availability"
+                expanded={business.expanded}
+                onPress={() => handleAccordionToggle(index)}
+              >
+                {business.domains.map((domain, i) => (
+                  <List.Item
+                    key={i}
+                    title={domain}
+                    left={() => (
+                      <IconButton
+                        icon={domain ? "check" : "close"}
+                        color={domain ? "green" : "red"}
+                      />
+                    )}
+                  />
+                ))}
+              </List.Accordion>
             </Card.Content>
+            <Card.Actions style={styles.cardActions}>
+              <IconButton
+                icon={business.expanded ? "minus" : "plus"}
+                onPress={() => handleAccordionToggle(index)}
+              />
+            </Card.Actions>
           </Card>
-        </View>
-        <View style={styles.outputContainer}>
-          <Card>
-            <Card.Content>
-              <Text>Output</Text>
-            </Card.Content>
-          </Card>
-          <Card>
-            <Card.Content>
-              <Text>Output</Text>
-            </Card.Content>
-          </Card>
-        </View>
+        ))}
       </View>
     </SafeAreaView>
   );
 };
-
-export default BussnessNameGenrator;
 
 const styles = StyleSheet.create({
   container: {
@@ -42,31 +120,25 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   inputContainer: {
-    flex: 1,
-    backgroundColor: "#fff",
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    justifyContent: "center",
+    padding: 16,
   },
-  outputContainer: {
+  input: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    marginRight: 16,
   },
-  text: {
-    color: "#000",
-    fontSize: 20,
+  cardContainer: {
+    flex: 1,
+    padding: 16,
   },
-  text2: {
-    color: "#000",
-    fontSize: 20,
+  card: {
+    marginBottom: 16,
   },
-  text3: {
-    color: "#000",
-    fontSize: 20,
-  },
-  text4: {
-    color: "#000",
-    fontSize: 20,
+  cardActions: {
+    justifyContent: "flex-end",
   },
 });
+
+export default BusinessNameGenerator;
