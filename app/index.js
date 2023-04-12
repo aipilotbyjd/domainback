@@ -242,9 +242,6 @@ const BusinessNameGenerator = () => {
                           Register
                         </Button>
                       </View>
-                      <View style={styles.buttonstarContainer}>
-                        <AntDesign name="staro" size={24} color="black" />
-                      </View>
                     </View>
                   </View>
                 ))}
