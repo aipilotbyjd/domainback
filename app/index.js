@@ -4,7 +4,7 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  ToastAndroid,
+  Linking,
   Alert,
 } from "react-native";
 import { TextInput, Button, Card, Title, List } from "react-native-paper";
@@ -189,6 +189,9 @@ const BusinessNameGenerator = () => {
   const getDomain = (domain) => {
     //Check if domain is available
     console.log("Check if domain is available");
+    Linking.openURL(domain).catch((err) => {
+      console.log(err);
+    });
   };
 
   return (
