@@ -219,6 +219,7 @@ const BusinessNameGenerator = () => {
           {businessNames.map((business, index) => (
             <List.Accordion
               title={business.name}
+              titleStyle={styles.accordionTitle}
               expanded={business.expanded}
               onPress={() => handleAccordionToggle(index)}
               style={styles.accordion}
@@ -233,7 +234,12 @@ const BusinessNameGenerator = () => {
               <Card style={styles.card2}>
                 {business.domains.map((domain, i) => (
                   <View style={styles.ItemButton} key={i}>
-                    <List.Item key={i} title={domain} style={styles.listItem} />
+                    <List.Item
+                      key={i}
+                      title={domain}
+                      titleStyle={styles.domais}
+                      style={styles.listItem}
+                    />
                     <View style={styles.ItemButton}>
                       <View style={styles.buttonContainer}>
                         <Button
@@ -318,7 +324,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 18,
-    fontFamily: "Bangers_400Regular",
+    fontFamily: "CarterOne_400Regular",
     fontWeight: "medium",
   },
   input: {
@@ -464,6 +470,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
     backgroundColor: "#F6F6F6",
+  },
+  accordionTitle: {
+    fontSize: 16,
+    fontWeight: "medium",
+    color: "#6200EE",
+    fontFamily: "Lexend_400Regular",
+  },
+  domais: {
+    fontSize: 16,
+    fontWeight: "medium",
+    color: "#6200EE",
+    fontFamily: "CarterOne_400Regular",
+    textTransform: "uppercase",
   },
 });
 
