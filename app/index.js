@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderColor: "#6200EE",
     borderWidth: 2,
-    width: "55%",
+    width: "60%",
     marginLeft: 0,
     paddingLeft: 0,
     flexDirection: "row",
@@ -444,7 +444,6 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     paddingLeft: 3,
     borderRadius: 5,
-    marginRight: 10,
     justifyContent: "space-between",
   },
 });
