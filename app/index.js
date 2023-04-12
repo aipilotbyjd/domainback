@@ -222,19 +222,31 @@ const BusinessNameGenerator = () => {
             >
               <Card style={styles.card2}>
                 {business.domains.map((domain, i) => (
-                  <List.Item
-                    key={i}
-                    title={domain}
-                    style={styles.listItem}
-                    right={() => (
-                      <AntDesign
-                        name="star"
-                        size={24}
-                        color="black"
-                        onPress={SaveDomain()}
-                      />
-                    )}
-                  />
+                  <View style={styles.ItemButton} key={i}>
+                    <List.Item key={i} title={domain} style={styles.listItem} />
+                    <View style={styles.ItemButton}>
+                      <View style={styles.buttonContainer}>
+                        <Button
+                          icon={() => (
+                            <Octicons
+                              name="link-external"
+                              size={20}
+                              color="black"
+                            />
+                          )}
+                          mode="text"
+                          contentStyle={styles.buttonContent}
+                          onPress={() => console.log("Pressed")}
+                          style={styles.buttonmain}
+                        >
+                          Register
+                        </Button>
+                      </View>
+                      <View style={styles.buttonstarContainer}>
+                        <AntDesign name="staro" size={24} color="black" />
+                      </View>
+                    </View>
+                  </View>
                 ))}
               </Card>
             </List.Accordion>
@@ -285,6 +297,13 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 12,
     marginBottom: 16,
+  },
+  buttonmain: {
+    padding : 0,
+    margin: 0,
+  },
+  buttonContent: {
+    paddingVertical: 6,
   },
   buttonLabel: {
     color: "#fff",
@@ -350,9 +369,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderColor: "#6200EE",
     borderWidth: 2,
-    width: "100%",
+    width: "60%",
     marginLeft: 0,
     paddingLeft: 0,
+    flexDirection: "row",
   },
   card2: {
     backgroundColor: "#fff",
@@ -406,6 +426,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 10,
     marginRight: 10,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 5,
+    marginRight: 10,
+    marginTop: -30,
+  },
+  buttonstarContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 5,
+    marginTop: -30,
+  },
+  ItemButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingTop: 16,
+    paddingLeft: 10,
+    borderRadius: 5,
+    marginRight: 10,
+    justifyContent: "space-between",
   },
 });
 
