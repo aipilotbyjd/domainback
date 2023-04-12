@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderColor: "#6200EE",
     borderWidth: 2,
-    width: "60%",
+    width: "65%",
     marginLeft: 0,
     paddingLeft: 0,
     flexDirection: "row",
