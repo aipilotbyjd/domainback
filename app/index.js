@@ -258,6 +258,7 @@ const BusinessNameGenerator = () => {
               </Card>
             </List.Accordion>
           ))}
+          <View style={styles.devicewidth} />
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -455,6 +456,14 @@ const styles = StyleSheet.create({
     paddingLeft: 3,
     borderRadius: 5,
     justifyContent: "space-between",
+  },
+  devicewidth: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+    backgroundColor: "#F6F6F6",
   },
 });
 
