@@ -164,6 +164,11 @@ const BusinessNameGenerator = () => {
       ],
       expanded: false,
     },
+    {
+      name: "Eagle Eye Solutions",
+      domains: ["google.com", "eagleeyesolutions.net", "eagleeyesolutions.org"],
+      expanded: false,
+    },
   ]);
 
   const handleKeywordChange = (text) => {
@@ -188,10 +193,7 @@ const BusinessNameGenerator = () => {
 
   const getDomain = (domain) => {
     //Check if domain is available
-    console.log("Check if domain is available");
-    Linking.openURL(domain).catch((err) => {
-      console.log(err);
-    });
+    Linking.openURL("https://" + domain);
   };
 
   return (
