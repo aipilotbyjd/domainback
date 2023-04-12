@@ -301,6 +301,7 @@ const styles = StyleSheet.create({
   buttonmain: {
     padding : 0,
     margin: 0,
+    borderRadius: 5,
   },
   buttonContent: {
     paddingVertical: 6,
