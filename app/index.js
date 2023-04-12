@@ -186,6 +186,11 @@ const BusinessNameGenerator = () => {
     Alert.alert("Domain saved to database");
   };
 
+  const getDomain = (domain) => {
+    //Check if domain is available
+    console.log("Check if domain is available");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topContainer}>
@@ -236,7 +241,7 @@ const BusinessNameGenerator = () => {
                           )}
                           mode="text"
                           contentStyle={styles.buttonContent}
-                          onPress={() => console.log("Pressed")}
+                          onPress={() => getDomain(domain)}
                           style={styles.buttonmain}
                         >
                           Register
