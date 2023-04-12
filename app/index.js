@@ -213,7 +213,7 @@ const BusinessNameGenerator = () => {
               onPress={() => handleAccordionToggle(index)}
               style={styles.accordion}
               key={index}
-              left={() => <AntDesign name="plus" size={24} color="black" />}
+              left={() => <AntDesign name="plus" size={24} color="#6200EE" />}
               theme={{
                 colors: {
                   background: "#F6F6F6",
