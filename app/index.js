@@ -182,18 +182,13 @@ const BusinessNameGenerator = () => {
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);
+        console.log(responseJson[101]);
+        setBusinessNames(responseJson);
+        console.log(businessNames);
       })
       .catch((error) => {
         console.error(error);
       });
-    console.log(keyword);
-    console.log(businessNames);
-    console.log(businessNames[0].domains);
-    console.log(businessNames[0].expanded);
-    console.log(businessNames[0].domains[0]);
-    console.log(businessNames[0].domains[0].includes(keyword));
-    console.log(businessNames[0].domains[0].includes("google.com"));
-    console.log(businessNames[0].domains[0].includes("google.com"));
   };
 
   const handleAccordionToggle = (index) => {
@@ -235,7 +230,7 @@ const BusinessNameGenerator = () => {
         <ScrollView>
           {businessNames.map((business, index) => (
             <List.Accordion
-              title={business.name}
+              title={business}
               titleStyle={styles.accordionTitle}
               expanded={business.expanded}
               onPress={() => handleAccordionToggle(index)}
@@ -249,7 +244,7 @@ const BusinessNameGenerator = () => {
               }}
             >
               <Card style={styles.card2}>
-                {business.domains.map((domain, i) => (
+                {/* {business.domains.map((domain, i) => (
                   <View style={styles.ItemButton} key={i}>
                     <List.Item
                       key={i}
@@ -277,7 +272,7 @@ const BusinessNameGenerator = () => {
                       </View>
                     </View>
                   </View>
-                ))}
+                ))} */}
               </Card>
             </List.Accordion>
           ))}
