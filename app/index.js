@@ -12,6 +12,7 @@ import { AntDesign, Octicons } from "@expo/vector-icons";
 
 const BusinessNameGenerator = () => {
   const [keyword, setKeyword] = useState("");
+  const [loading, setLoading] = useState(false);
   const extentions = [
     "com",
     "in",
@@ -35,6 +36,7 @@ const BusinessNameGenerator = () => {
   const newBusinessNames = [];
 
   const handleSearch = () => {
+    setLoading(true);
     // TODO: Implement search functionality
     //make fetch request to API
     fetch("https://aipilot.in/?startup_idea=" + keyword)
@@ -55,7 +57,7 @@ const BusinessNameGenerator = () => {
           newBusinessNames.push(newitem);
         });
         setBusinessNames(newBusinessNames);
-        console.log(businessNames);
+        setLoading(false);
       })
       .catch((error) => {
         console.error(error);
@@ -93,6 +95,8 @@ const BusinessNameGenerator = () => {
           onPress={handleSearch}
           style={styles.button}
           labelStyle={styles.buttonLabel}
+          loading={loading}
+          disabled={loading}
         >
           Generate Business Names
         </Button>
@@ -147,6 +151,7 @@ const BusinessNameGenerator = () => {
               </Card>
             </List.Accordion>
           ))}
+          {loading && <ActivityIndicator size="large" color="#6200EE" />}
           <View style={styles.devicewidth} />
         </ScrollView>
       </View>
