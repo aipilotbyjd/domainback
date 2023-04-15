@@ -103,7 +103,7 @@ const BusinessNameGenerator = () => {
         <ScrollView>
           {businessNames.map((business, index) => (
             <List.Accordion
-              title={business}
+              title={business.name}
               titleStyle={styles.accordionTitle}
               expanded={business.expanded}
               onPress={() => handleAccordionToggle(index)}
