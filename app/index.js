@@ -13,167 +13,27 @@ import { AntDesign, Octicons } from "@expo/vector-icons";
 const BusinessNameGenerator = () => {
   const [keyword, setKeyword] = useState("");
   const [domainavailable, setDomainavailable] = useState(false);
-  const [businessNames, setBusinessNames] = useState([
-    {
-      name: "Acme Industries",
-      domains: [
-        "acmeindustries.com",
-        "acmeindustries.net",
-        "acmeindustries.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Apex Solutions",
-      domains: ["apexsolutions.com", "apexsolutions.net", "apexsolutions.org"],
-      expanded: false,
-    },
-    {
-      name: "Bright Idea Inc.",
-      domains: ["brightidea.com", "brightidea.net", "brightidea.org"],
-      expanded: false,
-    },
-    {
-      name: "Blue Sky Innovations",
-      domains: [
-        "blueskyinnovations.com",
-        "blueskyinnovations.net",
-        "blueskyinnovations.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Creative Minds LLC",
-      domains: ["creativeminds.com", "creativeminds.net", "creativeminds.org"],
-      expanded: false,
-    },
-    {
-      name: "Dynamic Solutions",
-      domains: [
-        "dynamicsolutions.com",
-        "dynamicsolutions.net",
-        "dynamicsolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: [
-        "eagleeyesolutions.com",
-        "eagleeyesolutions.net",
-        "eagleeyesolutions.org",
-      ],
-      expanded: false,
-    },
-    {
-      name: "Eagle Eye Solutions",
-      domains: ["google.com", "eagleeyesolutions.net", "eagleeyesolutions.org"],
-      expanded: false,
-    },
-  ]);
+  const extentions = [
+    "com",
+    "in",
+    "net",
+    "org",
+    "co",
+    "io",
+    "me",
+    "us",
+    "online",
+    "tech",
+    "store",
+    "art",
+  ];
+  const [businessNames, setBusinessNames] = useState([]);
 
   const handleKeywordChange = (text) => {
     setKeyword(text);
   };
+
+  const newBusinessNames = [];
 
   const handleSearch = () => {
     // TODO: Implement search functionality
@@ -182,8 +42,21 @@ const BusinessNameGenerator = () => {
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);
-        console.log(responseJson[101]);
-        setBusinessNames(responseJson);
+        //reconstruct the array name domains and expanded
+        responseJson.map((item) => {
+          const domains = [];
+          extentions.map((extention) => {
+            domains.push(item + "." + extention);
+          });
+          const newitem = {
+            name: item,
+            expanded: false,
+            domains: domains,
+          };
+          newBusinessNames.push(newitem);
+        });
+        setBusinessNames(newBusinessNames);
+        setDomainavailable(true);
         console.log(businessNames);
       })
       .catch((error) => {
@@ -244,7 +117,7 @@ const BusinessNameGenerator = () => {
               }}
             >
               <Card style={styles.card2}>
-                {/* {business.domains.map((domain, i) => (
+                {business.domains.map((domain, i) => (
                   <View style={styles.ItemButton} key={i}>
                     <List.Item
                       key={i}
@@ -272,7 +145,7 @@ const BusinessNameGenerator = () => {
                       </View>
                     </View>
                   </View>
-                ))} */}
+                ))}
               </Card>
             </List.Accordion>
           ))}
