@@ -177,6 +177,23 @@ const BusinessNameGenerator = () => {
 
   const handleSearch = () => {
     // TODO: Implement search functionality
+    //make fetch request to API
+    fetch("https://aipilot.in/?startup_idea=" + keyword)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    console.log(keyword);
+    console.log(businessNames);
+    console.log(businessNames[0].domains);
+    console.log(businessNames[0].expanded);
+    console.log(businessNames[0].domains[0]);
+    console.log(businessNames[0].domains[0].includes(keyword));
+    console.log(businessNames[0].domains[0].includes("google.com"));
+    console.log(businessNames[0].domains[0].includes("google.com"));
   };
 
   const handleAccordionToggle = (index) => {
