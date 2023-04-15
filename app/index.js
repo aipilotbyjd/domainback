@@ -12,7 +12,6 @@ import { AntDesign, Octicons } from "@expo/vector-icons";
 
 const BusinessNameGenerator = () => {
   const [keyword, setKeyword] = useState("");
-  const [domainavailable, setDomainavailable] = useState(false);
   const extentions = [
     "com",
     "in",
@@ -56,7 +55,6 @@ const BusinessNameGenerator = () => {
           newBusinessNames.push(newitem);
         });
         setBusinessNames(newBusinessNames);
-        setDomainavailable(true);
         console.log(businessNames);
       })
       .catch((error) => {
