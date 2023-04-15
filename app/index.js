@@ -7,7 +7,7 @@ import {
   Linking,
   Alert,
 } from "react-native";
-import { TextInput, Button, Card, Title, List } from "react-native-paper";
+import { TextInput, Button, Card, List } from "react-native-paper";
 import { AntDesign, Octicons } from "@expo/vector-icons";
 
 const BusinessNameGenerator = () => {
