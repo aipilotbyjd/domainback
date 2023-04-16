@@ -15,6 +15,8 @@ import {
   ActivityIndicator,
 } from "react-native-paper";
 import { AntDesign, Octicons } from "@expo/vector-icons";
+import { Stack } from "expo-router";
+import { Link } from "expo-router";
 
 const BusinessNameGenerator = () => {
   const [keyword, setKeyword] = useState("");
@@ -89,6 +91,30 @@ const BusinessNameGenerator = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Stack.Screen
+        options={{
+          title: "DOMAINBACK",
+          headerStyle: {
+            backgroundColor: "#6200EE",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          headerLeft: () => (
+            <Link href="/settings" style={styles.buttonheader}>
+              <AntDesign name="setting" size={24} color="white" />
+            </Link>
+          ),
+          headerTitleAlign: "center",
+          //share button on header right side
+          headerRight: () => (
+            <Link href="/share" style={styles.buttonheader2}>
+              <AntDesign name="sharealt" size={24} color="white" />
+            </Link>
+          ),
+        }}
+      />
       <View style={styles.topContainer}>
         <TextInput
           label="Enter a keyword"
@@ -377,6 +403,14 @@ const styles = StyleSheet.create({
     color: "#6200EE",
     fontFamily: "CarterOne_400Regular",
     textTransform: "uppercase",
+  },
+  buttonheader: {
+    backgroundColor: "#6200EE",
+    marginLeft: 20,
+  },
+  buttonheader2: {
+    backgroundColor: "#6200EE",
+    marginRight: 20,
   },
 });
 
