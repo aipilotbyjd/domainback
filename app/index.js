@@ -17,6 +17,7 @@ import {
 import { AntDesign, Octicons } from "@expo/vector-icons";
 import { Stack } from "expo-router";
 import { Link } from "expo-router";
+import * as Sharing from "expo-sharing";
 
 const BusinessNameGenerator = () => {
   const [keyword, setKeyword] = useState("");
@@ -72,6 +73,18 @@ const BusinessNameGenerator = () => {
       });
   };
 
+  const handleShare = () => {
+    //share the app link
+    Sharing.isAvailableAsync().then((isAvailable) => {
+      if (isAvailable) {
+        Sharing.shareAsync(
+          "https://play.google.com/store/apps/details?id=com.domainback"
+        );
+      } else {
+        console.log("Sharing is not available on your platform");
+      }
+    });
+  };
   const handleAccordionToggle = (index) => {
     const newBusinessNames = [...businessNames];
     newBusinessNames[index].expanded = !newBusinessNames[index].expanded;
@@ -81,7 +94,6 @@ const BusinessNameGenerator = () => {
   const SaveDomain = () => {
     //Save domain to database
     console.log("Save domain to database");
-    Alert.alert("Domain saved to database");
   };
 
   const getDomain = (domain) => {
@@ -114,7 +126,7 @@ const BusinessNameGenerator = () => {
                 <Octicons name="share-android" size={24} color="white" />
               )}
               mode="text"
-              onPress={() => console.log("Pressed")}
+              onPress={() => handleShare()}
               style={styles.buttonheader}
             />
           ),
