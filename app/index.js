@@ -268,7 +268,6 @@ const styles = StyleSheet.create({
     fontWeight: "medium",
   },
   input: {
-    flex: 1,
     marginRight: 10,
     width: "100%",
   },
