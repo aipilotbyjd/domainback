@@ -10,6 +10,9 @@
       "eas": {
         "projectId": "befba813-ddcf-443e-a9fd-0d90ce3f8fec"
       }
+    },
+    "android": {
+      "package": "com.aicopilotideas.domainback"
     }
   }
 }
