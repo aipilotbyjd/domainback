@@ -99,13 +99,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#fff",
   },
-  maincontainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-    width: "100%",
-  },
   title: {
     fontSize: 30,
     fontWeight: "bold",
@@ -114,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     width: "100%",
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   card: {
     width: "100%",
