@@ -151,7 +151,7 @@ const BusinessNameGenerator = () => {
         </Button>
       </View>
       <View style={styles.bottomContainer}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {businessNames.map((business, index) => (
             <List.Accordion
               title={business.name}
