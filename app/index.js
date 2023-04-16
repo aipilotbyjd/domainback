@@ -36,6 +36,7 @@ const BusinessNameGenerator = () => {
     "art",
   ];
   const [businessNames, setBusinessNames] = useState([]);
+  const [shared, setShared] = useState(false);
 
   const handleKeywordChange = (text) => {
     setKeyword(text);
