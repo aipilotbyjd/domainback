@@ -5,6 +5,11 @@
       "bundler": "metro"
     },
     "name": "domainback",
-    "slug": "domainback"
+    "slug": "domainback",
+    "extra": {
+      "eas": {
+        "projectId": "befba813-ddcf-443e-a9fd-0d90ce3f8fec"
+      }
+    }
   }
 }
