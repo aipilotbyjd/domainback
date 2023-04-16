@@ -110,7 +110,7 @@ const BusinessNameGenerator = () => {
           //share button on header right side
           headerRight: () => (
             <Link href="/share" style={styles.buttonheader2}>
-              <AntDesign name="sharealt" size={24} color="white" />
+              <Octicons name="share-android" size={24} color="white" />
             </Link>
           ),
         }}
