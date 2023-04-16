@@ -109,9 +109,14 @@ const BusinessNameGenerator = () => {
           headerTitleAlign: "center",
           //share button on header right side
           headerRight: () => (
-            <Link href="/share" style={styles.buttonheader2}>
-              <Octicons name="share-android" size={24} color="white" />
-            </Link>
+            <Button
+              icon={() => (
+                <Octicons name="share-android" size={24} color="white" />
+              )}
+              mode="text"
+              onPress={() => console.log("Pressed")}
+              style={styles.buttonheader}
+            />
           ),
         }}
       />
