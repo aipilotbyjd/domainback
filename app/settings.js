@@ -40,7 +40,7 @@ const Settings = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Stack.Screen
         options={{
           title: "Settings",
