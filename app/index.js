@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   ScrollView,
   Linking,
-  Alert,
+  Share,
 } from "react-native";
 import {
   TextInput,
@@ -17,7 +17,6 @@ import {
 import { AntDesign, Octicons } from "@expo/vector-icons";
 import { Stack } from "expo-router";
 import { Link } from "expo-router";
-import * as Sharing from "expo-sharing";
 
 const BusinessNameGenerator = () => {
   const [keyword, setKeyword] = useState("");
@@ -73,17 +72,20 @@ const BusinessNameGenerator = () => {
       });
   };
 
-  const handleShare = () => {
+  const handleShare = async () => {
     //share the app link
-    Sharing.isAvailableAsync().then((isAvailable) => {
-      if (isAvailable) {
-        Sharing.shareAsync(
-          "https://play.google.com/store/apps/details?id=com.domainback"
-        );
-      } else {
-        console.log("Sharing is not available on your platform");
+    try {
+      const result = await Share.share({
+        message:
+          "Hey there! I just discovered this amazing app that I think you'll love. It's packed with features that make [insert app purpose here] so much easier and more fun. Check it out for yourself and let me know what you think! #JustAiChat #JustAiChatApp Click here to download the app https://play.google.com/store/apps/details?id=com.ayushgupta.ai_chat",
+      });
+
+      if (result.action === Share.sharedAction) {
+        setShared(true);
       }
-    });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   const handleAccordionToggle = (index) => {
     const newBusinessNames = [...businessNames];
