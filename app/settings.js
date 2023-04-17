@@ -10,7 +10,7 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Title, Card } from "react-native-paper";
 import { Stack } from "expo-router";
-import InAppReview from "react-native-in-app-review";
+import Rate, { AndroidMarket } from "react-native-rate";
 
 const Settings = () => {
   const handlePrivacyPolicyPress = () => {
@@ -23,20 +23,25 @@ const Settings = () => {
 
   const handleReviewAppPress = async () => {
     // handle review app press on play store
-    try {
-      const hasFlowStarted = await InAppReview.isAvailable();
-
-      if (hasFlowStarted) {
-        await InAppReview.requestReview();
-      } else {
-        console.log("In-app review is not available on this device.");
+    console.log("Review App Pressed");
+    const options = {
+      GooglePackageName: "com.instagram.android",
+      preferredAndroidMarket: AndroidMarket.Google,
+      preferInApp: true,
+      openAppStoreIfInAppFails: true,
+      fallbackPlatformURL:
+        "https://play.google.com/store/apps/details?id=com.instagram.android",
+    };
+    Rate.rate(options, (success, errorMessage) => {
+      if (success) {
+        // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
+        this.setState({ rated: true });
       }
-    } catch (error) {
-      console.log(
-        "An error occurred while starting the in-app review flow: ",
-        error
-      );
-    }
+      if (errorMessage) {
+        // errorMessage comes from the native code. Useful for debugging, but probably not for users to view
+        console.error(`Example page Rate.rate() error: ${errorMessage}`);
+      }
+    });
   };
 
   return (
