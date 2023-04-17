@@ -13,6 +13,8 @@ import { Stack } from "expo-router";
 import Rate, { AndroidMarket } from "react-native-rate";
 
 const Settings = () => {
+  const [rated, setRated] = React.useState(false);
+
   const handlePrivacyPolicyPress = () => {
     Linking.openURL("https://example.com/privacy-policy");
   };
@@ -25,17 +27,17 @@ const Settings = () => {
     // handle review app press on play store
     console.log("Review App Pressed");
     const options = {
-      GooglePackageName: "com.instagram.android",
+      GooglePackageName: "com.voicesirivirtual.ssiirrii.sirivoicecommands",
       preferredAndroidMarket: AndroidMarket.Google,
-      preferInApp: true,
-      openAppStoreIfInAppFails: true,
+      preferInApp: false,
+      openAppStoreIfInAppFails: false,
       fallbackPlatformURL:
-        "https://play.google.com/store/apps/details?id=com.instagram.android",
+        "https://play.google.com/store/apps/details?id=com.voicesirivirtual.ssiirrii.sirivoicecommands",
     };
     Rate.rate(options, (success, errorMessage) => {
       if (success) {
         // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
-        this.setState({ rated: true });
+        setRated(true);
       }
       if (errorMessage) {
         // errorMessage comes from the native code. Useful for debugging, but probably not for users to view
