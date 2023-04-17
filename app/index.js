@@ -55,28 +55,14 @@ const BusinessNameGenerator = () => {
     : "ca-app-pub-6156225952846626/2434187450";
 
   useEffect(() => {
-    const unsubscribe = interstitial.addAdEventListener(
-      AdEventType.LOADED,
-      () => {
-        setLoaded(true);
-      }
-    );
-
-    // Start loading the interstitial straight away
     interstitial.load();
-
-    // Unsubscribe from events on unmount
-    return unsubscribe;
   }, []);
 
   const handleKeywordChange = (text) => {
     setKeyword(text);
   };
 
-  const interstitial = InterstitialAd.createForAdRequest(adUnitIdforiner, {
-    requestNonPersonalizedAdsOnly: true,
-    keywords: ["fashion", "clothing"],
-  });
+  const interstitial = InterstitialAd.createForAdRequest(adUnitIdforiner);
 
   const newBusinessNames = [];
 
@@ -108,10 +94,13 @@ const BusinessNameGenerator = () => {
         console.error(error);
       });
 
-    //show the ad
-    if (loaded) {
-      interstitial.show();
+    //check if ad loaded if not loded then load it
+    if (!loaded) {
+      interstitial.load();
+      setLoaded(true);
     }
+    //show ad
+    interstitial.show();
   };
 
   const handleShare = async () => {
