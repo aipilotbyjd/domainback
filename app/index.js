@@ -60,25 +60,27 @@ const BusinessNameGenerator = () => {
 
   const interstitial = InterstitialAd.createForAdRequest(adUnitIdforiner);
 
-  const loadAd = async () => {
-    // load the ad if not loaded then reload it
-    if (!loaded) {
+  const loadAdOK = () => {
+    try {
       interstitial.load();
       setLoaded(true);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoaded(true);
     }
-    //show ad
+  };
+
+  const loadAd = async () => {
+    // load the ad if not loaded then reload i
+    loadAdOK();
+
+    //show the ad when loaded
     if (loaded) {
       interstitial.show();
     } else {
-      //settimeout to load ad
-      setTimeout(() => {
-        interstitial.load();
-        setLoaded(true);
-      }, 1000);
-      //show ad
-      if (loaded) {
-        interstitial.show();
-      }
+      loadAdOK();
+      interstitial.show();
     }
   };
 
