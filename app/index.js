@@ -17,11 +17,11 @@ import {
 import { AntDesign, Octicons } from "@expo/vector-icons";
 import { Stack } from "expo-router";
 import { Link } from "expo-router";
-// import {
-//   BannerAd,
-//   BannerAdSize,
-//   TestIds,
-// } from "react-native-google-mobile-ads";
+import {
+  BannerAd,
+  BannerAdSize,
+  TestIds,
+} from "react-native-google-mobile-ads";
 
 const BusinessNameGenerator = () => {
   const [keyword, setKeyword] = useState("");
@@ -43,9 +43,9 @@ const BusinessNameGenerator = () => {
   const [businessNames, setBusinessNames] = useState([]);
   const [shared, setShared] = useState(false);
 
-  // const adUnitId = __DEV__
-  //   ? TestIds.BANNER
-  //   : "ca-app-pub-6156225952846626/4066494015";
+  const adUnitId = __DEV__
+    ? TestIds.BANNER
+    : "ca-app-pub-6156225952846626/4066494015";
 
   const handleKeywordChange = (text) => {
     setKeyword(text);
@@ -215,13 +215,12 @@ const BusinessNameGenerator = () => {
           {loading && <ActivityIndicator size="large" color="#6200EE" />}
           <View style={styles.devicewidth} />
         </ScrollView>
-        {/* <BannerAd
+      </View>
+      <View style={styles.bottomsContainer}>
+        <BannerAd
           unitId={adUnitId}
           size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-          requestOptions={{
-            requestNonPersonalizedAdsOnly: true,
-          }}
-        /> */}
+        />
       </View>
     </SafeAreaView>
   );
@@ -446,6 +445,11 @@ const styles = StyleSheet.create({
   buttonheader2: {
     backgroundColor: "#6200EE",
     marginRight: 10,
+  },
+  bottomsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
 
