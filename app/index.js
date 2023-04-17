@@ -19,8 +19,8 @@ import { Stack } from "expo-router";
 import { Link } from "expo-router";
 import {
   GAMBannerAd,
-  RewardedInterstitialAd,
-  RewardedAdEventType,
+  InterstitialAd,
+  AdEventType,
   BannerAdSize,
   TestIds,
 } from "react-native-google-mobile-ads";
@@ -50,45 +50,22 @@ const BusinessNameGenerator = () => {
     ? TestIds.BANNER
     : "ca-app-pub-6156225952846626/4066494015";
 
-  const adUnitIdforReward = __DEV__
-    ? TestIds.REWARDED_INTERSTITIAL
-    : "ca-app-pub-6156225952846626/5670686894";
+  const adUnitIdforiner = __DEV__
+    ? TestIds.INTERSTITIAL
+    : "ca-app-pub-6156225952846626/2434187450";
 
   useEffect(() => {
-    const unsubscribeLoaded = rewardedInterstitial.addAdEventListener(
-      RewardedAdEventType.LOADED,
-      () => {
-        setLoaded(true);
-      }
-    );
-    const unsubscribeEarned = rewardedInterstitial.addAdEventListener(
-      RewardedAdEventType.EARNED_REWARD,
-      (reward) => {
-        console.log("User earned reward of ", reward);
-      }
-    );
-
-    // Start loading the rewarded interstitial ad straight away
-    rewardedInterstitial.load();
-
-    // Unsubscribe from events on unmount
-    return () => {
-      unsubscribeLoaded();
-      unsubscribeEarned();
-    };
+    interstitial.load();
   }, []);
 
   const handleKeywordChange = (text) => {
     setKeyword(text);
   };
 
-  const rewardedInterstitial = RewardedInterstitialAd.createForAdRequest(
-    adUnitIdforReward,
-    {
-      requestNonPersonalizedAdsOnly: true,
-      keywords: ["fashion", "clothing"],
-    }
-  );
+  const interstitial = InterstitialAd.createForAdRequest(adUnitIdforiner, {
+    requestNonPersonalizedAdsOnly: true,
+    keywords: ["fashion", "clothing"],
+  });
 
   const newBusinessNames = [];
 
@@ -121,9 +98,7 @@ const BusinessNameGenerator = () => {
       });
 
     //show the ad
-    if (rewardedInterstitial.isLoaded()) {
-      rewardedInterstitial.show();
-    }
+    interstitial.show();
   };
 
   const handleShare = async () => {
