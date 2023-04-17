@@ -18,7 +18,7 @@ import { AntDesign, Octicons } from "@expo/vector-icons";
 import { Stack } from "expo-router";
 import { Link } from "expo-router";
 import {
-  BannerAd,
+  GAMBannerAd,
   BannerAdSize,
   TestIds,
 } from "react-native-google-mobile-ads";
@@ -217,9 +217,9 @@ const BusinessNameGenerator = () => {
         </ScrollView>
       </View>
       <View style={styles.bottomsContainer}>
-        <BannerAd
+        <GAMBannerAd
           unitId={adUnitId}
-          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+          sizes={[BannerAdSize.INLINE_ADAPTIVE_BANNER]}
         />
       </View>
     </SafeAreaView>
@@ -450,6 +450,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 5,
   },
 });
 
