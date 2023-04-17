@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -19,6 +19,8 @@ import { Stack } from "expo-router";
 import { Link } from "expo-router";
 import {
   GAMBannerAd,
+  RewardedInterstitialAd,
+  RewardedAdEventType,
   BannerAdSize,
   TestIds,
 } from "react-native-google-mobile-ads";
@@ -26,6 +28,7 @@ import {
 const BusinessNameGenerator = () => {
   const [keyword, setKeyword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const extentions = [
     "com",
     "in",
@@ -47,17 +50,53 @@ const BusinessNameGenerator = () => {
     ? TestIds.BANNER
     : "ca-app-pub-6156225952846626/4066494015";
 
+  const adUnitIdforReward = __DEV__
+    ? TestIds.REWARDED_INTERSTITIAL
+    : "ca-app-pub-6156225952846626/5670686894";
+
+  useEffect(() => {
+    const unsubscribeLoaded = rewardedInterstitial.addAdEventListener(
+      RewardedAdEventType.LOADED,
+      () => {
+        setLoaded(true);
+      }
+    );
+    const unsubscribeEarned = rewardedInterstitial.addAdEventListener(
+      RewardedAdEventType.EARNED_REWARD,
+      (reward) => {
+        console.log("User earned reward of ", reward);
+      }
+    );
+
+    // Start loading the rewarded interstitial ad straight away
+    rewardedInterstitial.load();
+
+    // Unsubscribe from events on unmount
+    return () => {
+      unsubscribeLoaded();
+      unsubscribeEarned();
+    };
+  }, []);
+
   const handleKeywordChange = (text) => {
     setKeyword(text);
   };
 
+  const rewardedInterstitial = RewardedInterstitialAd.createForAdRequest(
+    adUnitIdforReward,
+    {
+      requestNonPersonalizedAdsOnly: true,
+      keywords: ["fashion", "clothing"],
+    }
+  );
+
   const newBusinessNames = [];
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     setLoading(true);
     // TODO: Implement search functionality
     //make fetch request to API
-    fetch("https://aipilot.in/?startup_idea=" + keyword)
+    await fetch("https://aipilot.in/?startup_idea=" + keyword)
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);
@@ -80,6 +119,11 @@ const BusinessNameGenerator = () => {
       .catch((error) => {
         console.error(error);
       });
+
+    //show the ad
+    if (rewardedInterstitial.isLoaded()) {
+      rewardedInterstitial.show();
+    }
   };
 
   const handleShare = async () => {
