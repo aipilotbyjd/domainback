@@ -13,6 +13,14 @@
     },
     "android": {
       "package": "com.aicopilotideas.domainback"
-    }
+    },
+    "plugins": [
+      "expo-build-properties",
+      {
+        "ios": {
+          "useFrameworks": "static"
+        }
+      }
+    ]
   }
 }
