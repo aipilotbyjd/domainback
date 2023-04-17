@@ -54,33 +54,33 @@ const BusinessNameGenerator = () => {
     ? TestIds.INTERSTITIAL
     : "ca-app-pub-6156225952846626/2434187450";
 
+  useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(
+      AdEventType.LOADED,
+      () => {
+        setLoaded(true);
+      }
+    );
+    interstitial.load();
+    return unsubscribe;
+  }, []);
+
   const handleKeywordChange = (text) => {
     setKeyword(text);
   };
 
   const interstitial = InterstitialAd.createForAdRequest(adUnitIdforiner);
 
-  const loadAdOK = () => {
-    try {
-      interstitial.load();
-      setLoaded(true);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoaded(true);
-    }
-  };
-
   const loadAd = async () => {
-    // load the ad if not loaded then reload i
-    loadAdOK();
+    // load the ad if not loaded then reload
 
     //show the ad when loaded
     if (loaded) {
       interstitial.show();
     } else {
-      loadAdOK();
+      interstitial.load();
       interstitial.show();
+      setLoaded(true);
     }
   };
 
@@ -116,6 +116,16 @@ const BusinessNameGenerator = () => {
 
     //check if ad loaded if not loded then load it
     if (!loaded) {
+      try {
+        interstitial.load();
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        setLoaded(true);
+      }
+    }
+    //show the ad when loaded
+    if (loaded) {
       loadAd();
     }
   };
