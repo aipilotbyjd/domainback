@@ -425,11 +425,11 @@ const styles = StyleSheet.create({
   },
   buttonheader: {
     backgroundColor: "#6200EE",
-    marginLeft: 20,
+    marginLeft: 10,
   },
   buttonheader2: {
     backgroundColor: "#6200EE",
-    marginRight: 20,
+    marginRight: 10,
   },
 });
 
