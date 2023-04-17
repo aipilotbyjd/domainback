@@ -55,7 +55,18 @@ const BusinessNameGenerator = () => {
     : "ca-app-pub-6156225952846626/2434187450";
 
   useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(
+      AdEventType.LOADED,
+      () => {
+        setLoaded(true);
+      }
+    );
+
+    // Start loading the interstitial straight away
     interstitial.load();
+
+    // Unsubscribe from events on unmount
+    return unsubscribe;
   }, []);
 
   const handleKeywordChange = (text) => {
@@ -98,7 +109,9 @@ const BusinessNameGenerator = () => {
       });
 
     //show the ad
-    interstitial.show();
+    if (loaded) {
+      interstitial.show();
+    }
   };
 
   const handleShare = async () => {
