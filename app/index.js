@@ -17,6 +17,11 @@ import {
 import { AntDesign, Octicons } from "@expo/vector-icons";
 import { Stack } from "expo-router";
 import { Link } from "expo-router";
+import {
+  BannerAd,
+  BannerAdSize,
+  TestIds,
+} from "react-native-google-mobile-ads";
 
 const BusinessNameGenerator = () => {
   const [keyword, setKeyword] = useState("");
@@ -37,6 +42,10 @@ const BusinessNameGenerator = () => {
   ];
   const [businessNames, setBusinessNames] = useState([]);
   const [shared, setShared] = useState(false);
+
+  const adUnitId = __DEV__
+    ? TestIds.BANNER
+    : "ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy";
 
   const handleKeywordChange = (text) => {
     setKeyword(text);
@@ -206,6 +215,13 @@ const BusinessNameGenerator = () => {
           {loading && <ActivityIndicator size="large" color="#6200EE" />}
           <View style={styles.devicewidth} />
         </ScrollView>
+        {/* <BannerAd
+          unitId={adUnitId}
+          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+        /> */}
       </View>
     </SafeAreaView>
   );

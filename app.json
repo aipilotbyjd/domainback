@@ -14,14 +14,7 @@
     "android": {
       "package": "com.aicopilotideas.domainback"
     },
-    "plugins": [
-      "expo-build-properties",
-      {
-        "ios": {
-          "useFrameworks": "static"
-        }
-      }
-    ]
+    "plugins": ["expo-build-properties"]
   },
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx",
