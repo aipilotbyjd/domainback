@@ -45,7 +45,7 @@ const BusinessNameGenerator = () => {
 
   const adUnitId = __DEV__
     ? TestIds.BANNER
-    : "ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy";
+    : "ca-app-pub-6156225952846626/4066494015";
 
   const handleKeywordChange = (text) => {
     setKeyword(text);
