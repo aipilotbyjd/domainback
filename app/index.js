@@ -78,9 +78,15 @@ const BusinessNameGenerator = () => {
     if (loaded) {
       interstitial.show();
     } else {
-      interstitial.load();
-      interstitial.show();
-      setLoaded(true);
+      //try catch use
+      try {
+        interstitial.load();
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        setLoaded(true);
+        interstitial.show();
+      }
     }
   };
 
