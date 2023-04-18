@@ -16,23 +16,22 @@ const Settings = () => {
   const [rated, setRated] = React.useState(false);
 
   const handlePrivacyPolicyPress = () => {
-    Linking.openURL("https://example.com/privacy-policy");
+    Linking.openURL("https://aipilot.in/privacy-policy");
   };
 
   const handleTermsOfServicePress = () => {
-    Linking.openURL("https://example.com/terms-of-service");
+    Linking.openURL("https://aipilot.in/terms-of-service");
   };
 
   const handleReviewAppPress = async () => {
     // handle review app press on play store
-    console.log("Review App Pressed");
     const options = {
-      GooglePackageName: "com.voicesirivirtual.ssiirrii.sirivoicecommands",
+      GooglePackageName: "com.aicopilotideas.domainback",
       preferredAndroidMarket: AndroidMarket.Google,
       preferInApp: false,
       openAppStoreIfInAppFails: false,
       fallbackPlatformURL:
-        "https://play.google.com/store/apps/details?id=com.voicesirivirtual.ssiirrii.sirivoicecommands",
+        "https://play.google.com/store/apps/details?id=com.aicopilotideas.domainback",
     };
     Rate.rate(options, (success, errorMessage) => {
       if (success) {
