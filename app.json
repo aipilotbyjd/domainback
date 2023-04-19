@@ -20,7 +20,12 @@
       }
     },
     "android": {
-      "package": "com.aicopilotideas.domainback"
+      "package": "com.aicopilotideas.domainback",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/domainbackicon.png",
+        "backgroundColor": "#ff8080"
+      }
     },
     "plugins": ["expo-build-properties"]
   },
