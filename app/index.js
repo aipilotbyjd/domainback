@@ -75,19 +75,7 @@ const BusinessNameGenerator = () => {
     // load the ad if not loaded then reload
 
     //show the ad when loaded
-    if (loaded) {
-      interstitial.show();
-    } else {
-      //try catch use
-      try {
-        interstitial.load();
-      } catch (error) {
-        console.log(error.message);
-      } finally {
-        setLoaded(true);
-        interstitial.show();
-      }
-    }
+    interstitial.show();
   };
 
   const newBusinessNames = [];
@@ -120,20 +108,9 @@ const BusinessNameGenerator = () => {
         console.error(error);
       });
 
-    //check if ad loaded if not loded then load it
-    if (!loaded) {
-      try {
-        interstitial.load();
-      } catch (error) {
-        console.log(error.message);
-      } finally {
-        setLoaded(true);
-      }
-    }
-    //show the ad when loaded
-    if (loaded) {
+    setInterval(() => {
       loadAd();
-    }
+    }, 10000);
   };
 
   const handleShare = async () => {
