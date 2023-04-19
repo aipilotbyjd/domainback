@@ -164,7 +164,11 @@ const BusinessNameGenerator = () => {
 
   const getDomain = (domain) => {
     //Check if domain is available
-    Linking.openURL("https://" + domain);
+    Linking.openURL(
+      "https://shareasale.com/r.cfm?b=1781996&u=2918237&m=46483&urllink=https://www.namecheap.com/domains/registration/results/?domain=" +
+        domain +
+        "&afftrack="
+    );
   };
 
   return (
