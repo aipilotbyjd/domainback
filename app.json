@@ -8,11 +8,11 @@
     "slug": "domainback",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/domainbackicon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/domainback.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ff8080"
     },
     "extra": {
       "eas": {
