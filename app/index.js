@@ -244,6 +244,32 @@ const BusinessNameGenerator = () => {
                     </View>
                   </View>
                 ))}
+                <View style={styles.ItemButton}>
+                  <View style={styles.ItemButton}>
+                    <List.Item
+                      title={"Get Your favorite domain name from namecheap"}
+                      titleStyle={styles.domais}
+                      style={styles.listItem}
+                    />
+                    <View style={styles.buttonContainer}>
+                      <Button
+                        icon={() => (
+                          <Octicons
+                            name="link-external"
+                            size={20}
+                            color="black"
+                          />
+                        )}
+                        mode="text"
+                        contentStyle={styles.buttonContent}
+                        onPress={() => getDomain(business.name + ".com")}
+                        style={styles.buttonmain}
+                      >
+                        Register
+                      </Button>
+                    </View>
+                  </View>
+                </View>
               </Card>
             </List.Accordion>
           ))}
