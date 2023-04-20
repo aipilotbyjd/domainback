@@ -96,9 +96,10 @@ const BusinessNameGenerator = () => {
   const loadAd = async () => {
     //make 1 sec delay
     setTimeout(() => {
-      if (interstitial.loaded) interstitial.show();
-      else {
-        if (interstitialrew.loaded) interstitialrew.show();
+      if (interstitial.loaded) {
+        interstitial.show();
+      } else if (interstitialrew.loaded) {
+        interstitialrew.show();
       }
     }, 1000);
   };
@@ -131,10 +132,10 @@ const BusinessNameGenerator = () => {
       })
       .catch((error) => {
         console.error(error);
+      })
+      .finally(() => {
+        loadAd();
       });
-
-    //show the ad when loaded
-    loadAd();
   };
 
   const handleShare = async () => {
