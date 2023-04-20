@@ -7,6 +7,7 @@ import {
   Linking,
   Share,
   ToastAndroid,
+  TouchableOpacity,
 } from "react-native";
 import {
   TextInput,
@@ -200,14 +201,12 @@ const BusinessNameGenerator = () => {
           headerTitleAlign: "center",
           //share button on header right side
           headerRight: () => (
-            <Button
-              icon={() => (
-                <Octicons name="share-android" size={24} color="white" />
-              )}
-              mode="text"
-              onPress={() => handleShare()}
-              style={styles.buttonheader}
-            />
+            <TouchableOpacity
+              onPress={handleShare}
+              style={styles.buttonheader2}
+            >
+              <Octicons name="share-android" size={24} color="white" />
+            </TouchableOpacity>
           ),
         }}
       />
@@ -532,7 +531,7 @@ const styles = StyleSheet.create({
   },
   buttonheader2: {
     backgroundColor: "#6200EE",
-    marginRight: 10,
+    marginRight: 12,
   },
   bottomsContainer: {
     flex: 1,
