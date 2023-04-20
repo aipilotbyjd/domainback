@@ -20,8 +20,10 @@ import { Link } from "expo-router";
 import {
   GAMBannerAd,
   InterstitialAd,
+  RewardedInterstitialAd,
   AdEventType,
   BannerAdSize,
+  RewardedAdEventType,
   TestIds,
 } from "react-native-google-mobile-ads";
 
@@ -46,13 +48,22 @@ const BusinessNameGenerator = () => {
   const [businessNames, setBusinessNames] = useState([]);
   const [shared, setShared] = useState(false);
 
-  const adUnitId = __DEV__
-    ? TestIds.BANNER
-    : "ca-app-pub-6156225952846626/4066494015";
+  // const adUnitId = __DEV__
+  //   ? TestIds.BANNER
+  //   : "ca-app-pub-6156225952846626/4066494015";
 
-  const adUnitIdforiner = __DEV__
-    ? TestIds.INTERSTITIAL
-    : "ca-app-pub-6156225952846626/2434187450";
+  const adUnitId = "ca-app-pub-6156225952846626/4066494015";
+
+  // const adUnitIdforiner = __DEV__
+  //   ? TestIds.INTERSTITIAL
+  //   : "ca-app-pub-6156225952846626/2434187450";
+
+  const adUnitIdforiner = "ca-app-pub-6156225952846626/2434187450";
+  const adUnitIdforinerrew = "ca-app-pub-6156225952846626/5670686894";
+
+  const interstitial = InterstitialAd.createForAdRequest(adUnitIdforiner);
+  const interstitialrew =
+    RewardedInterstitialAd.createForAdRequest(adUnitIdforinerrew);
 
   useEffect(() => {
     const unsubscribe = interstitial.addAdEventListener(
@@ -61,21 +72,35 @@ const BusinessNameGenerator = () => {
         setLoaded(true);
       }
     );
+
+    const unsubscribeLoaded = interstitialrew.addAdEventListener(
+      RewardedAdEventType.LOADED,
+      () => {
+        setLoaded(true);
+      }
+    );
+
     interstitial.load();
-    return unsubscribe;
+    interstitialrew.load();
+
+    return () => {
+      unsubscribe();
+      unsubscribeLoaded();
+    };
   }, []);
 
   const handleKeywordChange = (text) => {
     setKeyword(text);
   };
 
-  const interstitial = InterstitialAd.createForAdRequest(adUnitIdforiner);
-
   const loadAd = async () => {
-    // load the ad if not loaded then reload
-
-    //show the ad when loaded
-    interstitial.show();
+    //make 1 sec delay
+    setTimeout(() => {
+      if (interstitial.loaded) interstitial.show();
+      else {
+        if (interstitialrew.loaded) interstitialrew.show();
+      }
+    }, 1000);
   };
 
   const newBusinessNames = [];
@@ -108,9 +133,8 @@ const BusinessNameGenerator = () => {
         console.error(error);
       });
 
-    setInterval(() => {
-      loadAd();
-    }, 10000);
+    //show the ad when loaded
+    loadAd();
   };
 
   const handleShare = async () => {
@@ -246,11 +270,6 @@ const BusinessNameGenerator = () => {
                 ))}
                 <View style={styles.ItemButton}>
                   <View style={styles.ItemButton}>
-                    <List.Item
-                      title={"Get Your favorite domain name from namecheap"}
-                      titleStyle={styles.domais}
-                      style={styles.listItem}
-                    />
                     <View style={styles.buttonContainer}>
                       <Button
                         icon={() => (
@@ -265,7 +284,7 @@ const BusinessNameGenerator = () => {
                         onPress={() => getDomain(business.name + ".com")}
                         style={styles.buttonmain}
                       >
-                        Register
+                        Check For Alternative Domains
                       </Button>
                     </View>
                   </View>
@@ -280,7 +299,7 @@ const BusinessNameGenerator = () => {
       <View style={styles.bottomsContainer}>
         <GAMBannerAd
           unitId={adUnitId}
-          sizes={[BannerAdSize.INLINE_ADAPTIVE_BANNER]}
+          sizes={[BannerAdSize.MEDIUM_RECTANGLE]}
         />
       </View>
     </SafeAreaView>
@@ -508,10 +527,9 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   bottomsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flex: 1,
+    justifyContent: "flex-end",
     alignItems: "center",
-    marginBottom: 5,
   },
 });
 
