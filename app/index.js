@@ -6,6 +6,7 @@ import {
   ScrollView,
   Linking,
   Share,
+  ToastAndroid,
 } from "react-native";
 import {
   TextInput,
@@ -97,9 +98,15 @@ const BusinessNameGenerator = () => {
     //make 1 sec delay
     setTimeout(() => {
       if (interstitial.loaded) {
+        ToastAndroid.show("Loading Ads", ToastAndroid.SHORT);
         interstitial.show();
       } else if (interstitialrew.loaded) {
+        ToastAndroid.show("Loading Ad Rewarded", ToastAndroid.SHORT);
         interstitialrew.show();
+      } else {
+        interstitial.load();
+        interstitialrew.load();
+        setTimeout(loadAd, 2000);
       }
     }, 1000);
   };
@@ -134,6 +141,7 @@ const BusinessNameGenerator = () => {
         console.error(error);
       })
       .finally(() => {
+        ToastAndroid.show("Loading Ad", ToastAndroid.SHORT);
         loadAd();
       });
   };
