@@ -11,6 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Title, Card } from "react-native-paper";
 import { Stack } from "expo-router";
 import Rate, { AndroidMarket } from "react-native-rate";
+import { BannerAdSize, GAMBannerAd } from "react-native-google-mobile-ads";
 
 const Settings = () => {
   const [rated, setRated] = React.useState(false);
@@ -91,6 +92,12 @@ const Settings = () => {
             </Card.Content>
           </Card>
         </ScrollView>
+        <View style={styles.bottomsContainer}>
+          <GAMBannerAd
+            unitId={adUnitId}
+            sizes={[BannerAdSize.MEDIUM_RECTANGLE]}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -132,5 +139,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#000",
     textAlign: "center",
+  },
+  bottomsContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
 });
