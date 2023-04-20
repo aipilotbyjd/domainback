@@ -15,6 +15,7 @@ import { BannerAdSize, GAMBannerAd } from "react-native-google-mobile-ads";
 
 const Settings = () => {
   const [rated, setRated] = React.useState(false);
+  const adUnitId = "ca-app-pub-6156225952846626/2865889147";
 
   const handlePrivacyPolicyPress = () => {
     Linking.openURL("https://aipilot.in/privacy-policy");
