@@ -150,7 +150,7 @@ const BusinessNameGenerator = () => {
     try {
       const result = await Share.share({
         message:
-          "Hey there! I just discovered this amazing app that I think you'll love. It's packed with features that make it can genrate intelligent and unique startup names for you genrate startup names is so much easier and more fun. Check it out for yourself and let me know what you think! #DOMAINBACK #DOMAINBACKAPP Click here to download the app https://play.google.com/store/apps/details?id=com.ayushgupta.ai_chat",
+          "Hey there! I just discovered this amazing app that I think you'll love. It's packed with features that make it can genrate intelligent and unique startup names for you genrate startup names is so much easier and more fun. Check it out for yourself and let me know what you think! #DOMAINBACK #DOMAINBACKAPP Click here to download the app https://play.google.com/store/apps/details?id=com.aicopilotideas.domainback",
       });
 
       if (result.action === Share.sharedAction) {
