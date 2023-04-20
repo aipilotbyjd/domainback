@@ -120,7 +120,6 @@ const BusinessNameGenerator = () => {
     await fetch("https://aipilot.in/?startup_idea=" + keyword)
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
         //reconstruct the array name domains and expanded
         responseJson.map((item) => {
           const domains = [];
